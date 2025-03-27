@@ -1,9 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
 const uploadImage = () => {
+    const [image, setImage] = useState(null);
+
+    const handleImageChange = () => {
+        setImage(e.target.files[0]);
+    }
+
     return (
-       <h1>Upload iamge here</h1>
+        <div className="upload-container">
+            <h1>Upload Image here</h1>
+            <input type="file" onChange={handleImageChange} />
+       </div>
     )
 }
 
