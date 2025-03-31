@@ -3,8 +3,9 @@ import axios from "axios";
 
 const uploadImage = () => {
   const [image, setImage] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
 
-  const handleImageChange = () => {
+  const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
@@ -29,6 +30,10 @@ const uploadImage = () => {
       <h1>Upload Image here..</h1>
       <input type="file" onChange={handleImageChange} />
       <button onClick={handleUpload}>Analyze</button>
+
+      {recommendations}
+
+
     </div>
   );
 };
