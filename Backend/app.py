@@ -1,10 +1,17 @@
 from flask import Flask, request
 import cv2
 import numpy as np
+import mediapipe as mp
 from PIL import Image
 import io
 
 app = Flask(__name__)
+
+MODEL_PATH = "skin_tone_model.h5"
+model = load_model(MODEL_PATH)
+
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.7)
 
 NAIL_COLOR_MAP = {
     "fair": ["Pastel Pink", "Nude", "Light Blue"],
