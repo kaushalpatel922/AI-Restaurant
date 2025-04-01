@@ -20,10 +20,15 @@ def detect_hand(image):
         return True, image_rgb
     return False, None
 
+@app.route("/analyze", methods=["POST"])
 def analze_nail():
     file = request.files["file"]
     image = Image.open(io.BytesIO(file.read()))
     image = np.array(image)
+
+    hand_detected, processed_image = detect_hand(image)
+    if not hand_detected:
+        return jsonify({"error": "No hand detected"})
 
 if __name__ = "__main__":
     app.run(debug=True)
